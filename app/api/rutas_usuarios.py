@@ -157,17 +157,18 @@ def iniciar_sesion(datos: LoginRequest, response: Response):
 
         # No enviar la contraseña al frontend.
         return {
-            "mensaje": "Inicio de sesión exitoso",
-            "token_type": "bearer",
-            "expires_in": expires_in,
-            "usuario": {
-                "id_usuario": usuario["id_usuario"],
-                "nombre_usuario": usuario["nombre_usuario"],
-                "correo": usuario["correo"],
-                "id_rol": usuario["id_rol"],
-                "rol": usuario["nombre_rol"]
-            }
-        }
+        "mensaje": "Inicio de sesión exitoso",
+        "access_token": token,
+        "token_type": "bearer",
+        "expires_in": expires_in,
+        "usuario": {
+        "id_usuario": usuario["id_usuario"],
+        "nombre_usuario": usuario["nombre_usuario"],
+        "correo": usuario["correo"],
+        "id_rol": usuario["id_rol"],
+        "rol": usuario["nombre_rol"]
+    }
+}
 
     except HTTPException:
         raise
