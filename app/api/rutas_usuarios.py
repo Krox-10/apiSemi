@@ -1,5 +1,7 @@
 import os
+import logging
 
+logger = logging.getLogger(__name__)
 from fastapi import APIRouter, HTTPException, Request, Response
 from app.models.usuario import Usuario
 from app.repositories.usuario_repo import UsuarioRepository
@@ -171,6 +173,7 @@ def iniciar_sesion(datos: LoginRequest, response: Response):
         raise
 
     except Exception:
+        logger.exception("Error interno al validar el login")
         raise HTTPException(
             status_code=500,
             detail="Error al validar las credenciales"
